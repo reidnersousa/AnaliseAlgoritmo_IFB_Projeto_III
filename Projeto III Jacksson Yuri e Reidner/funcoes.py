@@ -1,5 +1,5 @@
 import os 
-
+import matplotlib.pyplot as plt 
 
 def ler_instancia(caminho_arquivo):
     ### A primeira linha de cada arquivo possui dois inteiros:
@@ -41,10 +41,34 @@ def calcular_beneficio(itens,solucao):
 
 def metrica_qualidade(beneficio,beneficio_esperado):
    
-    print(beneficio)
-    print(beneficio_esperado)
+    #print("bene",beneficio)
+    #print("bene_espe",beneficio_esperado)
     q = beneficio/ beneficio_esperado
     return q
 
 
+### eixo x tempo de execução/ qualidade da solução
+### eixo y tamanho da entrada
+def grafico_curva(eixo_x,eixo_y):
+    
+    plt.figure(figsize=(6,8))
+    plt.plot(eixo_x,eixo_y , color='blue',linestyle='--')
+    plt.plot(eixo_x,eixo_y ,color='blue',linestyle='--')
+    plt.xlabel("Tempo de execucção(s)")
+    plt.ylabel("Tamanho da entrada")
+    plt.xscale("log")
+    plt.yscale("log")
 
+    plt.legend()
+    plt.show()
+
+def grafico_barras(eixo_x,eixo_y):
+    
+    plt.figure(figsize=(6,8))
+    plt.plot(eixo_x,eixo_y , color='blue',linestyle='--')
+    plt.xlabel("Tamanho da entrada")
+    plt.ylabel("Qualidade da solução")
+    
+
+    plt.legend()
+    plt.show()

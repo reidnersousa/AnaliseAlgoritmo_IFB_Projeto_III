@@ -16,10 +16,13 @@ def knapsack_guloso_menor_peso(capacidade, itens):
             vetor_solucao[i] = 1
         else:
             break
-    print(peso_total)
+    #print("peso_total",peso_total)
     return mochila, valor_total , vetor_solucao
 
 
+
+def faz_tudo(root,k1):
+    pass
 
 root = r'large_scale'
 
@@ -28,19 +31,26 @@ k1,k2,k3 = fc.sepera_lotes(root)
 
 print("k1",k1)
 
-caminho_arquivo_pesos = os.path.join(root,k1[2])
-print("caminho_arquivo",caminho_arquivo_pesos)
+l1 = []
+l2 = []
 
-itens ,capacidade ,saida_esperada,y = fc.ler_instancia(caminho_arquivo_pesos)
-print(saida_esperada)
-mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
 
-beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
-beneficio_saida = fc.calcular_beneficio(itens,saida)
+for arquivo in (k1):
+   
+    path_arquivo = os.path.join(root,arquivo)
+    itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
+    mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
+    beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
+    beneficio_saida = fc.calcular_beneficio(itens,saida)
 
-q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
-print(q)
-"""
-for i in (k1):
-    print(i)
-"""
+    q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
+    l1.append(q)
+    l2.append(y)
+   
+
+k1_pi = []
+#fc.grafico_barras(l2,l1)
+k1_pi.append(l1)
+k1_pi.append(l2)
+print(k1_pi[0])
+print(k1_pi[1])
