@@ -2,11 +2,15 @@ import os
 
 
 def ler_instancia(caminho_arquivo):
+    ### A primeira linha de cada arquivo possui dois inteiros:
+    ### Y = Quantidade de itens 
+    ### W = capacidade da mochila 
+    
     with open(caminho_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
-
-    itens = []
-    for linha in linhas[:-1]:  # Ignora a última linha que contém o vetor X
+    y , w = map(int,linhas[0].split())
+    itens = []                  # Ignora a primeira linha que contém Y e W
+    for linha in linhas[1:-1]:  # Ignora a última linha que contém o vetor X
         valor, peso = map(int, linha.split())  # Troquei a ordem para "valor, peso"
         itens.append({'valor': valor, 'peso': peso})
 
@@ -28,9 +32,16 @@ def sepera_lotes(root):
     knaPI_3 = arquivos[2*tam_parte:]
     return knaPI_1,knaPI_2,knaPI_3
 
+def calcular_beneficio(itens,solucao):
+    beneficio = 0
+    for i in range(len(itens)):
+        beneficio += itens[i]['valor']* solucao[i]
+    return beneficio
+
 def metrica_qualidade(saida,saida_esperada):
-    saida = sum(saida)
-    saida_esperada = sum(saida_esperada)
+   
+    print(saida)
+    print(saida_esperada)
     q = saida/ saida_esperada
     return q
 

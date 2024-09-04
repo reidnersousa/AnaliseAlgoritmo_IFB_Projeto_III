@@ -16,7 +16,7 @@ def knapsack_guloso_menor_peso(capacidade, itens):
             vetor_solucao[i] = 1
         else:
             break
-    #print(peso_total)
+    print(peso_total)
     return mochila, valor_total , vetor_solucao
 
 
@@ -28,12 +28,19 @@ k1,k2,k3 = fc.sepera_lotes(root)
 
 print(k1)
 
-caminho_arquivo_pesos = os.path.join(root,k1[0])
+caminho_arquivo_pesos = os.path.join(root,k1[2])
 print(caminho_arquivo_pesos)
 
-itens ,capacidade ,vetor_solucao_otima = fc.ler_instancia(caminho_arquivo_pesos)
-mochila , valor_total ,vetor_solucao= knapsack_guloso_menor_peso(capacidade,itens)
+itens ,capacidade ,saida_esperada = fc.ler_instancia(caminho_arquivo_pesos)
+print(saida_esperada)
+mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
 
+beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
+beneficio_saida = fc.calcular_beneficio(itens,saida)
 
-q=fc.metrica_qualidade(vetor_solucao,vetor_solucao_otima)
+q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
 print(q)
+"""
+for i in (k1):
+    print(i)
+"""
