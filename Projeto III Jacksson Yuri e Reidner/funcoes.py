@@ -9,6 +9,7 @@ def ler_instancia(caminho_arquivo):
     with open(caminho_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
     y , w = map(int,linhas[0].split())
+    print("y",y,"w",w)
     itens = []                  # Ignora a primeira linha que contém Y e W
     for linha in linhas[1:-1]:  # Ignora a última linha que contém o vetor X
         valor, peso = map(int, linha.split())  # Troquei a ordem para "valor, peso"
@@ -18,7 +19,7 @@ def ler_instancia(caminho_arquivo):
     
     vetor_solucao_otima = list(map(int, linhas[-1].split()))
 
-    return itens, capacidade, vetor_solucao_otima
+    return itens, capacidade, vetor_solucao_otima ,y 
     
 
 
@@ -38,11 +39,11 @@ def calcular_beneficio(itens,solucao):
         beneficio += itens[i]['valor']* solucao[i]
     return beneficio
 
-def metrica_qualidade(saida,saida_esperada):
+def metrica_qualidade(beneficio,beneficio_esperado):
    
-    print(saida)
-    print(saida_esperada)
-    q = saida/ saida_esperada
+    print(beneficio)
+    print(beneficio_esperado)
+    q = beneficio/ beneficio_esperado
     return q
 
 

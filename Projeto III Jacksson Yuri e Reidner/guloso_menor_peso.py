@@ -26,12 +26,12 @@ root = r'large_scale'
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
 
-print(k1)
+print("k1",k1)
 
 caminho_arquivo_pesos = os.path.join(root,k1[2])
-print(caminho_arquivo_pesos)
+print("caminho_arquivo",caminho_arquivo_pesos)
 
-itens ,capacidade ,saida_esperada = fc.ler_instancia(caminho_arquivo_pesos)
+itens ,capacidade ,saida_esperada,y = fc.ler_instancia(caminho_arquivo_pesos)
 print(saida_esperada)
 mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
 
