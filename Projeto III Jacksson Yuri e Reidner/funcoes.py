@@ -17,9 +17,9 @@ def ler_instancia(caminho_arquivo):
 
     capacidade = 1000  # Verifique se a capacidade é sempre 1000 ou se deve ser lida do arquivo
     
-    vetor_solucao_otima = list(map(int, linhas[-1].split()))
+    #vetor_solucao_otima = list(map(int, linhas[-1].split()))
 
-    return itens, capacidade, vetor_solucao_otima ,y 
+    return itens, capacidade ,y 
     
 
 
@@ -35,12 +35,14 @@ def sepera_lotes(root):
 
 def calcular_beneficio(itens,solucao):
     beneficio = 0
+    #print("solucão",solucao)
     for i in range(len(itens)):
         beneficio += itens[i]['valor']* solucao[i]
     return beneficio
 
 def metrica_qualidade(beneficio,beneficio_esperado):
-   
+    if beneficio_esperado == 0:
+        return 0
     print("bene",beneficio)
     print("bene_espe",beneficio_esperado)
     q = beneficio/ beneficio_esperado
