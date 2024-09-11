@@ -20,19 +20,18 @@ def knapsack_guloso_menor_peso(capacidade, itens):
     return mochila, valor_total , vetor_solucao
 
 
-### saida esperada so será possivel apos implementar o dp
+
 def faz_tudo(root,k1):
     l1 = []
     l2 = []
     for arquivo in (k1):
         path_arquivo = os.path.join(root,arquivo)
-        itens , capacidade , y = fc.ler_instancia(path_arquivo)
+        itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
         mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
-        
+        beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
         beneficio_saida = fc.calcular_beneficio(itens,saida)
 
-        #q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
-        q =1
+        q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
         l1.append(q)
         l2.append(y)
         k1_pi = []
@@ -53,7 +52,10 @@ print("k1",k1)
 
 
 k1_pi=faz_tudo(root,k1)
-#k2_pi=faz_tudo(root,k2)
+k2_pi=faz_tudo(root,k2)
+k3_pi=faz_tudo(root,k3)
+
 
 print(k1_pi)
-#print(k2_pi)
+print(k2_pi)
+print(k3_pi)
