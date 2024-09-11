@@ -15,7 +15,7 @@ def ler_instancia(caminho_arquivo):
         valor, peso = map(int, linha.split())  # Troquei a ordem para "valor, peso"
         itens.append({'valor': valor, 'peso': peso})
 
-    capacidade = 1000  # Verifique se a capacidade é sempre 1000 ou se deve ser lida do arquivo
+    capacidade = 1000#w   # Verifique se a capacidade é sempre 1000 ou se deve ser lida do arquivo
     
     vetor_solucao_otima = list(map(int, linhas[-1].split()))
 
