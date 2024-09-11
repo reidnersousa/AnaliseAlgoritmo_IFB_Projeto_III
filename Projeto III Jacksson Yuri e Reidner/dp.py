@@ -39,26 +39,32 @@ def knapsack_dp(itens, capacidade):
    
 
  
-    print("valor_max",valor_max)
+    #print("valor_max",valor_max)
     ### Pegando os itens que forma a melhor solução
     w = capacidade
     itens_selecionados = []
+    solucao_otima = [0] * n 
     for i in range(n,0,-1):
         if dp[i][w] != dp[i-1][w]:
             itens_selecionados.append(itens[i-1])
+            solucao_otima[i-1] = 1
             w -= itens[i-1]['peso']
-    print(itens_selecionados)
-    return valor_max
+    itens_selecionados.reverse()
+    #print(solucao_otima)
+    #print(itens_selecionados)
+    return valor_max , solucao_otima
 
 import os 
 root = r'large_scale'
 
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
-nome_arquivo = k1[2]
+print("k1[2]",k1[2])
+nome_arquivo = k1[1]
 path_arquivo = os.path.join(root,nome_arquivo)
 itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
-saida_dp = knapsack_dp(itens,capacidade)
-
+capacidade_max ,vetor_otima = knapsack_dp(itens,capacidade)
+print("capacidade maxima possivel",capacidade_max)
+#print("vetor Solução melhor possível",vetor_otima)
 
 
