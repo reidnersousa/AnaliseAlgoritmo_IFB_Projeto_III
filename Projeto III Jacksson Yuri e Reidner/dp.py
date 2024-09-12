@@ -92,46 +92,56 @@ print("Tempo execucao",tempo_exc,"nome arquivo",nome_arquivo)
 
 import os
 import time
+import os
+import time
 
-# Inicializar listas para armazenar os resultados
-lista_q = []
-lista_y = []
-lista_tempo = []
-k = k3
-# Loop para percorrer os arquivos em k1
-for idx in range(len(k)):
-    # Leitura de arquivo
-    nome_arquivo = k[idx]
-    path_arquivo = os.path.join(root, nome_arquivo)
-    itens, capacidade, saida_arquivo, y = fc.ler_instancia(path_arquivo)
+def processar_arquivo_dp(k, root):
+    
+    lista_q = []
+    lista_y = []
+    lista_tempo = []
 
-    # Tempo dp
-    inicio = time.time()
-    capacidade_max, saida_dp = knapsack_dp(itens, capacidade)
-    fim = time.time()
-    tempo_exc = fim - inicio
 
-    # Beneficio dp  
-    beneficio_dp = fc.calcular_beneficio(itens, saida_dp)
+    for idx in range(len(k)):
+        
+        nome_arquivo = k[idx]
+        path_arquivo = os.path.join(root, nome_arquivo)
+        itens, capacidade, saida_arquivo, y = fc.ler_instancia(path_arquivo)
 
-    # Beneficio extraindo do vetor solução da ultima linha 
-    beneficio_arquivo = fc.calcular_beneficio(itens, saida_arquivo)
+        # Tempo dp
+        inicio = time.time()
+        capacidade_max, saida_dp = knapsack_dp(itens, capacidade)
+        fim = time.time()
+        tempo_exc = fim - inicio
 
-    # Cálculo da métrica de qualidade
-    q = fc.metrica_qualidade(beneficio_dp, beneficio_arquivo)
+        # Beneficio dp  
+        beneficio_dp = fc.calcular_beneficio(itens, saida_dp)
 
-    # Salvar os resultados em listas
-    lista_q.append(q)
-    lista_y.append(y)
-    lista_tempo.append(tempo_exc)
+        # Beneficio extraindo do vetor solução da última linha 
+        beneficio_arquivo = fc.calcular_beneficio(itens, saida_arquivo)
 
-    # Exibir os resultados para cada arquivo
-    print(f"q em relação a dp com a lista binária do arquivo: {q}")
-    print(f"Capacidade máxima possível: {capacidade_max}")
-    print(f"Tempo de execução: {tempo_exc} segundos, Nome do arquivo: {nome_arquivo}")
+        # Cálculo da métrica de qualidade
+        q = fc.metrica_qualidade(beneficio_dp, beneficio_arquivo)
 
-# Agora, `lista_q` contém os valores de `q` e `lista_y` contém os valores de `y` para cada arquivo.
-print("k",k)
-print("lista_q",lista_q)
-print("lista_y",lista_y)
-print("lista_tempo",lista_tempo)
+        
+        lista_q.append(q)
+        lista_y.append(y)
+        lista_tempo.append(tempo_exc)
+
+       
+        print("q em relação a dp com a lista binária do arquivo:",q)
+        print("Capacidade máxima possível: ",capacidade_max)
+        print("Tempo de execução:",tempo_exc,"segundos  Nome do arquivo:",nome_arquivo)
+
+   
+    return lista_q, lista_y, lista_tempo
+
+
+
+lista_q, lista_y, lista_tempo = processar_arquivo_dp(k3, root)
+
+
+print("k:", k3)
+print("lista_q:", lista_q)
+print("lista_y:", lista_y)
+print("lista_tempo:", lista_tempo)
