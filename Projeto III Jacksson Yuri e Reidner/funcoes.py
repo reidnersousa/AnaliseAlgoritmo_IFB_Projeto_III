@@ -49,19 +49,25 @@ def metrica_qualidade(beneficio,beneficio_esperado):
 
 ### eixo x tempo de execução/ qualidade da solução
 ### eixo y tamanho da entrada
-def grafico_curva(eixo_x,eixo_y):
+### Gráfico curva tempo de execução 
+def grafico_curva(lista_tempo,lista_y):
     
-    plt.figure(figsize=(6,8))
-    plt.plot(eixo_x,eixo_y , color='blue',linestyle='--')
-    plt.plot(eixo_x,eixo_y ,color='blue',linestyle='--')
-    plt.xlabel("Tempo de execucção(s)")
-    plt.ylabel("Tamanho da entrada")
-    plt.xscale("log")
-    plt.yscale("log")
+   # Criando o gráfico
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot(lista_y, lista_tempo, marker='o', linestyle='-', color='b', label='KnaPI_1')
 
+    # Adicionando título e rótulos
+    plt.title('Tempo de Execução vs. Valor de y')
+    plt.xlabel('Valor de y')
+    plt.ylabel('Tempo de Execução (s)')
     plt.legend()
+    plt.grid(True)
+
+    # Exibindo o gráfico
     plt.show()
 
+### Qualidade da solução
 def grafico_barras(eixo_x,eixo_y):
     
     plt.figure(figsize=(6,8))
