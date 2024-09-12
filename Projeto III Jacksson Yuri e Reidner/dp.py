@@ -59,8 +59,9 @@ root = r'large_scale'
 
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
-print("k1[2]",k1[2])
-nome_arquivo = k1[1]
+idx = 2
+print("k1[",idx,"]",k3[idx])
+nome_arquivo = k3[idx]
 path_arquivo = os.path.join(root,nome_arquivo)
 itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
 capacidade_max ,vetor_otima = knapsack_dp(itens,capacidade)
