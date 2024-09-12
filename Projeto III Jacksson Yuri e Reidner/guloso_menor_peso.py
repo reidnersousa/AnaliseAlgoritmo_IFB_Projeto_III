@@ -21,41 +21,24 @@ def knapsack_guloso_menor_peso(capacidade, itens):
 
 
 
-def faz_tudo(root,k1):
-    l1 = []
-    l2 = []
-    for arquivo in (k1):
-        path_arquivo = os.path.join(root,arquivo)
-        itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
-        mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
-        beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
-        beneficio_saida = fc.calcular_beneficio(itens,saida)
 
-        q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
-        l1.append(q)
-        l2.append(y)
-        k1_pi = []
-        
-    k1_pi.append(l1)
-    k1_pi.append(l2)
-    
-    return k1_pi
-
-    
 
 root = r'large_scale'
-
+""" 
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
 
 print("k1",k1)
+nome_arquivo = k1[2]
+path_arquivo = os.path.join(root,nome_arquivo)
+itens , capacidade , saida_esperada ,y = fc.ler_instancia(path_arquivo)
+mochila , valor_total ,saida= knapsack_guloso_menor_peso(capacidade,itens)
+beneficio_saida_esperada = fc.calcular_beneficio(itens,saida_esperada)
+
+beneficio_saida = fc.calcular_beneficio(itens,saida)
+q=fc.metrica_qualidade(beneficio_saida,beneficio_saida_esperada)
+
+print("saida",beneficio_saida,"q",q)
 
 
-k1_pi=faz_tudo(root,k1)
-k2_pi=faz_tudo(root,k2)
-k3_pi=faz_tudo(root,k3)
-
-
-print(k1_pi)
-print(k2_pi)
-print(k3_pi)
+""" 

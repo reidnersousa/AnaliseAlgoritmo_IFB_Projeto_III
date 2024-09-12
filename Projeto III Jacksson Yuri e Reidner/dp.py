@@ -55,17 +55,24 @@ def knapsack_dp(itens, capacidade):
     return valor_max , solucao_otima
 
 import os 
+import timeit
 root = r'large_scale'
 
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
+print('k1',k1)
 idx = 2
 print("k1[",idx,"]",k3[idx])
+### Leitura de arquivo
 nome_arquivo = k3[idx]
 path_arquivo = os.path.join(root,nome_arquivo)
 itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
+
+### dp 
 capacidade_max ,vetor_otima = knapsack_dp(itens,capacidade)
 print("capacidade maxima possivel",capacidade_max)
-#print("vetor Solução melhor possível",vetor_otima)
+print("vetor Solução melhor possível",vetor_otima)
 
 
+
+### Criar uma função que escrever o melhor
