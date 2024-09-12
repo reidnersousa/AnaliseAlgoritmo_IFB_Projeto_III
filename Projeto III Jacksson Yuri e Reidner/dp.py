@@ -55,24 +55,83 @@ def knapsack_dp(itens, capacidade):
     return valor_max , solucao_otima
 
 import os 
-import timeit
+import time
 root = r'large_scale'
 
 ### Nome do arquivo de cada instancia 
 k1,k2,k3 = fc.sepera_lotes(root)
-print('k1',k1)
-idx = 2
-print("k1[",idx,"]",k3[idx])
+
+""" 
+idx = 6
+print('k1',k1,'idx',idx)
+
 ### Leitura de arquivo
-nome_arquivo = k3[idx]
+nome_arquivo = k1[idx]
 path_arquivo = os.path.join(root,nome_arquivo)
-itens , capacidade , saida_esperada , y = fc.ler_instancia(path_arquivo)
+itens , capacidade , saida_arquivo , y = fc.ler_instancia(path_arquivo)
 
-### dp 
-capacidade_max ,vetor_otima = knapsack_dp(itens,capacidade)
+### Tempo dp  
+inicio = time.time()
+capacidade_max ,saida_dp = knapsack_dp(itens,capacidade)
+fim = time.time()
+tempo_exc = fim - inicio
+### Beneficio dp  
+beneficio_dp =fc.calcular_beneficio(itens,saida_dp)
+### Beneficio extraindo do vetor solução da ultima linha 
+beneficio_arquivo = fc.calcular_beneficio(itens,saida_arquivo)
+
+
+q  =fc.metrica_qualidade(beneficio_dp,beneficio_arquivo)
+print("q em relação a dp  com a lista binaria do arquivo ",q)
 print("capacidade maxima possivel",capacidade_max)
-print("vetor Solução melhor possível",vetor_otima)
+print("Tempo execucao",tempo_exc,"nome arquivo",nome_arquivo)
+#print("vetor Solução melhor possível",saida_dp)
 
 
+""" 
 
-### Criar uma função que escrever o melhor
+import os
+import time
+
+# Inicializar listas para armazenar os resultados
+lista_q = []
+lista_y = []
+lista_tempo = []
+k = k3
+# Loop para percorrer os arquivos em k1
+for idx in range(len(k)):
+    # Leitura de arquivo
+    nome_arquivo = k[idx]
+    path_arquivo = os.path.join(root, nome_arquivo)
+    itens, capacidade, saida_arquivo, y = fc.ler_instancia(path_arquivo)
+
+    # Tempo dp
+    inicio = time.time()
+    capacidade_max, saida_dp = knapsack_dp(itens, capacidade)
+    fim = time.time()
+    tempo_exc = fim - inicio
+
+    # Beneficio dp  
+    beneficio_dp = fc.calcular_beneficio(itens, saida_dp)
+
+    # Beneficio extraindo do vetor solução da ultima linha 
+    beneficio_arquivo = fc.calcular_beneficio(itens, saida_arquivo)
+
+    # Cálculo da métrica de qualidade
+    q = fc.metrica_qualidade(beneficio_dp, beneficio_arquivo)
+
+    # Salvar os resultados em listas
+    lista_q.append(q)
+    lista_y.append(y)
+    lista_tempo.append(tempo_exc)
+
+    # Exibir os resultados para cada arquivo
+    print(f"q em relação a dp com a lista binária do arquivo: {q}")
+    print(f"Capacidade máxima possível: {capacidade_max}")
+    print(f"Tempo de execução: {tempo_exc} segundos, Nome do arquivo: {nome_arquivo}")
+
+# Agora, `lista_q` contém os valores de `q` e `lista_y` contém os valores de `y` para cada arquivo.
+print("k",k)
+print("lista_q",lista_q)
+print("lista_y",lista_y)
+print("lista_tempo",lista_tempo)
