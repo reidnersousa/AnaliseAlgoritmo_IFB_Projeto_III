@@ -54,23 +54,30 @@ def metrica_qualidade(beneficio,beneficio_esperado):
 ### Gráfico curva tempo de execução 
 def grafico_curva(lista_tempo, lista_y, title):
     import matplotlib.pyplot as plt
+    import numpy as np
 
+    # Ordenar os valores de y (pegamos a lista_y[0] como base)
+    y_sorted_indices = np.argsort(lista_y[0])
+
+    # Aplicar a mesma ordenação para todas as listas
+    lista_y_sorted = [np.array(ys)[y_sorted_indices] for ys in lista_y]
+    lista_tempo_sorted = [np.array(ts)[y_sorted_indices] for ts in lista_tempo]
+
+    # Plotar os gráficos com os valores ordenados
     plt.figure(figsize=(10, 6))
     
-    
-    plt.plot(lista_y[0], lista_tempo[0], marker='o', linestyle='-', color='green', label='dp')
-    plt.plot(lista_y[0], lista_tempo[1], marker='o', linestyle='-', color='blue', label='gmp')
-    plt.plot(lista_y[0], lista_tempo[2], marker='o', linestyle='-', color='yellow', label='cb')
+    plt.plot(lista_y_sorted[0], lista_tempo_sorted[0], marker='o', linestyle='-', color='green', label='dp')
+    plt.plot(lista_y_sorted[0], lista_tempo_sorted[1], marker='o', linestyle='-', color='blue', label='gmp')
+    plt.plot(lista_y_sorted[0], lista_tempo_sorted[2], marker='o', linestyle='-', color='yellow', label='cb')
 
-   
     plt.title(title)
-    plt.xlabel('Valor de y ')
+    plt.xlabel('Valor de y (ordenado)')
     plt.ylabel('Tempo de Execução (s)')
     plt.legend()
     plt.grid(True)
     
-    
     plt.show()
+
 
 
 ### Qualidade da solução
