@@ -1,6 +1,7 @@
 import os 
 import matplotlib.pyplot as plt 
-
+import numpy as np
+   
 def ler_instancia(caminho_arquivo):
     ### A primeira linha de cada arquivo possui dois inteiros:
     ### Y = Quantidade de itens 
@@ -50,31 +51,46 @@ def metrica_qualidade(beneficio,beneficio_esperado):
 ### eixo x tempo de execução/ qualidade da solução
 ### eixo y tamanho da entrada
 ### Gráfico curva tempo de execução 
-def grafico_curva(lista_tempo,lista_y):
-    
-   # Criando o gráfico
-    
-    plt.figure(figsize=(10, 6))
-    plt.plot(lista_y, lista_tempo, marker='o', linestyle='-', color='b', label='KnaPI_1')
+def grafico_curva(lista_tempo, lista_y, title):
+    import matplotlib.pyplot as plt
 
-    # Adicionando título e rótulos
-    plt.title('Tempo de Execução vs. Valor de y')
-    plt.xlabel('Valor de y')
+    plt.figure(figsize=(10, 6))
+    
+    
+    plt.plot(lista_y[0], lista_tempo[0], marker='o', linestyle='-', color='green', label='dp')
+    plt.plot(lista_y[0], lista_tempo[1], marker='o', linestyle='-', color='blue', label='gmp')
+    plt.plot(lista_y[0], lista_tempo[2], marker='o', linestyle='-', color='yellow', label='cb')
+
+   
+    plt.title(title)
+    plt.xlabel('Valor de y ')
     plt.ylabel('Tempo de Execução (s)')
     plt.legend()
     plt.grid(True)
-
-    # Exibindo o gráfico
+    
+    
     plt.show()
 
-### Qualidade da solução
-def grafico_barras(eixo_x,eixo_y):
-    
-    plt.figure(figsize=(6,8))
-    plt.plot(eixo_x,eixo_y , color='blue',linestyle='--')
-    plt.xlabel("Tamanho da entrada")
-    plt.ylabel("Qualidade da solução")
-    
 
+### Qualidade da solução
+def grafico_barras(lista_q, lista_y, title):
+   
+    
+    plt.figure(figsize=(10, 6))
+    
+    indices = np.arange(len(lista_y[0]))  # Cria os índices para cada valor de y
+    largura = 0.2  
+   
+    plt.bar(indices - largura, lista_q[0], largura, label='dp', color='green')
+    plt.bar(indices, lista_q[1], largura, label='gmp', color='blue')
+    plt.bar(indices + largura, lista_q[2], largura, label='cb', color='yellow')
+    
+    
+    plt.xlabel('Valor de y')
+    plt.ylabel('Qualidade da Solução (q)')
+    plt.title(title)
+    plt.xticks(indices, lista_y[0])  
     plt.legend()
+    plt.grid(True)
+    
     plt.show()
