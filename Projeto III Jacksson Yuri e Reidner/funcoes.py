@@ -52,9 +52,11 @@ def metrica_qualidade(beneficio,beneficio_esperado):
 ### eixo x tempo de execução/ qualidade da solução
 ### eixo y tamanho da entrada
 ### Gráfico curva tempo de execução 
-def grafico_curva(lista_tempo, lista_y, title):
-    import matplotlib.pyplot as plt
-    import numpy as np
+def grafico_curvas(lista_tempo, lista_y, title):
+    
+
+    safe_title = ''.join(c for c in title if c.isalnum() or c in (' ', '_')).rstrip()
+    arquivo_nome = 'imagens/' + safe_title + '.png'
 
     # Ordenar os valores de y (pegamos a lista_y[0] como base)
     y_sorted_indices = np.argsort(lista_y[0])
@@ -76,6 +78,9 @@ def grafico_curva(lista_tempo, lista_y, title):
     plt.legend()
     plt.grid(True)
     
+    os.makedirs(os.path.dirname(arquivo_nome),exist_ok=True)
+    plt.savefig(arquivo_nome)    
+    #plt.close()
     plt.show()
 
 
@@ -83,6 +88,8 @@ def grafico_curva(lista_tempo, lista_y, title):
 ### Qualidade da solução
 def grafico_barras(lista_q, lista_y, title):
    
+    safe_title = ''.join(c for c in title if c.isalnum() or c in (' ', '_')).rstrip()
+    arquivo_nome = 'imagens/' + safe_title + '.png'
     
     plt.figure(figsize=(10, 6))
     
@@ -101,4 +108,7 @@ def grafico_barras(lista_q, lista_y, title):
     plt.legend()
     plt.grid(True)
     
+    os.makedirs(os.path.dirname(arquivo_nome),exist_ok=True)
+    plt.savefig(arquivo_nome)  
+    #plt.close()
     plt.show()
