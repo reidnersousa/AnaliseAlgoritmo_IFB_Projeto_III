@@ -77,7 +77,7 @@ def processar_arquivo_gmp(k,root):
     return lista_q, lista_y, lista_tempo
 
 
-k = k3
+k = k2
 lista_q, lista_y, lista_tempo = processar_arquivo_gmp(k, root)
 
 print("k:", k)
