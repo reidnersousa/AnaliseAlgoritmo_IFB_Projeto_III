@@ -16,8 +16,8 @@ def ler_instancia(caminho_arquivo):
         valor, peso = map(int, linha.split())  # Troquei a ordem para "valor, peso"
         itens.append({'valor': valor, 'peso': peso})
 
-    capacidade = 1000  ## Caso do saad
-    #capacidade = w     # O beneficio sera igual ao do arquivo large_scale_optium     
+   
+    capacidade = w     # O beneficio sera igual ao do arquivo large_scale_optium     
     vetor_solucao_otima = list(map(int, linhas[-1].split()))
 
     return itens, capacidade, vetor_solucao_otima ,y 
@@ -41,7 +41,8 @@ def calcular_beneficio(itens,solucao):
     return beneficio
 
 def metrica_qualidade(beneficio,beneficio_esperado):
-   
+   ## Dp x *
+   ## Gulos x 
     print("bene",beneficio)
     print("bene_espe",beneficio_esperado)
     q = beneficio/ beneficio_esperado

@@ -54,12 +54,12 @@ def processar_arquivo_gmp(k,root):
         itens, capacidade , saida_arquivo , y = fc.ler_instancia(path_arquivo)
 
         ## Tempo guloso menor_peso
-        inicio = time.time()
+        inicio = time.perf_counter()
         mochila , valor_total ,saida= knapsack_guloso_custo_beneficio(capacidade,itens)
-        fim  = time.time()
+        fim  = time.perf_counter()
         tempo_exc = fim - inicio
         ### Beneficio guloso menor peso
-        beneficio_cb = fc.calcular_beneficio(itens,saida)
+        beneficio_cb = valor_total
         ### Beneficio vetor solução da última linha 
         beneficio_arquivo = fc.calcular_beneficio(itens,saida_arquivo)
 
@@ -82,7 +82,7 @@ k = k3
 lista_q, lista_y, lista_tempo = processar_arquivo_gmp(k, root)
 
 
-print("k:", k)
-print("lista_q:", lista_q)
-print("lista_y:", lista_y)
-print("lista_tempo:", lista_tempo)
+print("k =", k)
+print("lista_q_cb =", lista_q)
+print("lista_y_cb =", lista_y)
+print("lista_tempo_cb =", lista_tempo)

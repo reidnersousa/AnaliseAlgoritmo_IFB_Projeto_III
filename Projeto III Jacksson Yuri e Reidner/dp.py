@@ -137,11 +137,11 @@ def processar_arquivo_dp(k, root):
     return lista_q, lista_y, lista_tempo
 
 
+k = k2
+lista_q, lista_y, lista_tempo = processar_arquivo_dp(k, root)
 
-lista_q, lista_y, lista_tempo = processar_arquivo_dp(k3, root)
-
-
-print("k:", k3)
+print("dp")
+print("k:", k)
 print("lista_q:", lista_q)
 print("lista_y:", lista_y)
 print("lista_tempo:", lista_tempo)
