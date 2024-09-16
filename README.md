@@ -13,5 +13,17 @@ Cada script pode ser executado diretamente no terminal ou prompt de comando. Ant
 #### Rodando Programação Dinâmica (dp.py)
 ```bash
 $ python dp.py
+```
+
+
+#### Rodando Programação Dinâmica (dp.py)
+```bash
 $ python guloso_menor_peso.py
+```
+
+
+#### Rodando Programação Dinâmica (dp.py)
+```bash
 $ python guloso_custo_beneficio.py
+```
+
