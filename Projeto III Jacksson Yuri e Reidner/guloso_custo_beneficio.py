@@ -23,10 +23,9 @@ def knapsack_guloso_custo_beneficio(capacidade,itens):
     return mochila, valor_total , vetor_solucao
 
 
-root = r'large_scale'
 
-### Nome do arquivo de cada instancia 
-k1,k2,k3 = fc.sepera_lotes(root)
+
+
 """ 
 print("k1",k1)
 nome_arquivo = k1[2]
@@ -78,6 +77,10 @@ def processar_arquivo_gmp(k,root):
     return lista_q, lista_y, lista_tempo
 
 
+root = os.path.join(os.getcwd(), 'large_scale')  # Garante compatibilidade com diferentes sistemas operacionais
+
+### Nome do arquivo de cada instancia 
+k1,k2,k3 = fc.sepera_lotes(root)
 k = k2
 lista_q, lista_y, lista_tempo = processar_arquivo_gmp(k, root)
 

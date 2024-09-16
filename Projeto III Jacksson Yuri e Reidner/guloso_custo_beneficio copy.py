@@ -23,6 +23,8 @@ def knapsack_guloso_custo_beneficio(capacidade,itens):
     return mochila, valor_total , vetor_solucao
 
 
+#root = os.path.join(os.getcwd(), 'large_scale')  # Garante compatibilidade com diferentes sistemas operacionais
+
 root = r'large_scale'
 
 ### Nome do arquivo de cada instancia 

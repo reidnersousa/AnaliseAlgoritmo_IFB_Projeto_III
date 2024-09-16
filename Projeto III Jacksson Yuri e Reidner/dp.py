@@ -54,12 +54,7 @@ def knapsack_dp(itens, capacidade):
     #print(itens_selecionados)
     return valor_max , solucao_otima
 
-import os 
-import time
-root = r'large_scale'
 
-### Nome do arquivo de cada instancia 
-k1,k2,k3 = fc.sepera_lotes(root)
 
 """ 
 idx = 6
@@ -136,6 +131,15 @@ def processar_arquivo_dp(k, root):
    
     return lista_q, lista_y, lista_tempo
 
+
+import os 
+import time
+
+
+### Nome do arquivo de cada instancia 
+root = os.path.join(os.getcwd(), 'large_scale')  # Garante compatibilidade com diferentes sistemas operacionais
+
+k1,k2,k3 = fc.sepera_lotes(root)
 
 k = k2
 lista_q, lista_y, lista_tempo = processar_arquivo_dp(k, root)
